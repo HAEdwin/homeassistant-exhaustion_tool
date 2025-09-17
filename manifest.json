@@ -1,0 +1,10 @@
+{
+  "domain": "exhaustion_meter",
+  "name": "Exhaustion Meter",
+  "version": "0.1.0",
+  "documentation": "https://github.com/yourusername/exhaustion_meter",
+  "requirements": ["psutil>=5.9.0"],
+  "dependencies": [],
+  "codeowners": ["@yourusername"],
+  "config_flow": true
+}
