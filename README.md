@@ -4,6 +4,7 @@ A resource exhaustion tool to find integrations that are exhausting resources. A
 ## Open sockets
 **What it does:**
 Reports the total number of open network connections (sockets) on the system, including all TCP/UDP sockets in all states.
+
 **Health meaning:**
 A steadily increasing or very high value may indicate a socket leak or that your system is approaching its socket/file descriptor limit, which can cause connectivity issues or failures.
 
@@ -25,6 +26,7 @@ A high value is normal for busy systems, but if it grows without dropping, it ma
 ## Sockets in ESTABLISHED
 **What it does:**
 Shows the number of sockets with active, established connections.
+
 **Health meaning:**
 Indicates how many active network connections Home Assistant and other processes are maintaining. A sudden spike may indicate a flood of connections or a stuck integration.
 
@@ -35,6 +37,7 @@ Indicates how many active network connections Home Assistant and other processes
 ## Sockets in CLOSE_WAIT
 **What it does:**
 Counts sockets waiting to be closed by the local process.
+
 **Health meaning:**
 A growing number may indicate that some software is not closing sockets properly, which can eventually exhaust system resources.
 
@@ -45,6 +48,7 @@ A growing number may indicate that some software is not closing sockets properly
 ## Sockets in LISTEN
 **What it does:**
 Reports the number of sockets in LISTEN state (waiting for incoming connections).
+
 **Health meaning:**
 Shows how many services are waiting for connections. A sudden drop may indicate a crashed service; a sudden spike may indicate misconfiguration.
 
@@ -55,6 +59,7 @@ Shows how many services are waiting for connections. A sudden drop may indicate 
 ## Socket Creation Failure
 **What it does:**
 Attempts to create a test socket. Reports 0 if successful, 1 if it fails (indicating socket exhaustion).
+
 **Health meaning:**
 If this sensor shows 1, your system cannot create new sockets, which will cause network failures in Home Assistant and other software. Immediate action is required.
 
@@ -65,6 +70,7 @@ Should always be 0. If it is 1, your system is out of sockets or file descriptor
 ## Open Files (HA Process)
 **What it does:**
 Reports the number of files currently open by the Home Assistant process.
+
 **Health meaning:**
 A steadily increasing value may indicate a file handle leak, which can eventually cause Home Assistant to crash or malfunction.
 
@@ -75,6 +81,7 @@ A steadily increasing value may indicate a file handle leak, which can eventuall
 ## Open File Descriptors
 **What it does:**
 Shows the number of open file descriptors (Linux/Unix only) for the Home Assistant process.
+
 **Health meaning:**
 Similar to open files, a high or growing value may indicate a resource leak.
 
@@ -85,6 +92,7 @@ Similar to open files, a high or growing value may indicate a resource leak.
 ## Process Count
 **What it does:**
 Reports the total number of running processes on the system.
+
 **Health meaning:**
 A sudden increase may indicate runaway processes or a misbehaving integration. A very high value can exhaust system resources.
 
@@ -95,11 +103,12 @@ A sudden increase may indicate runaway processes or a misbehaving integration. A
 ## Disk I/O Operations
 **What it does:**
 Shows the total number of disk read and write operations since system boot.
+
 **Health meaning:**
 A rapidly increasing value may indicate heavy disk usage. If Home Assistant becomes slow or unresponsive, check this sensor for excessive I/O.
 
 **Normal values:**
-- The absolute value is less important than the rate of change. Rapid increases (thousands per second) may indicate excessive logging or database activity.
+The absolute value is less important than the rate of change. Rapid increases (thousands per second) may indicate excessive logging or database activity.
 
 ---
 
