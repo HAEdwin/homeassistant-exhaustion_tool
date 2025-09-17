@@ -6,6 +6,7 @@ A resource exhaustion tool to find integrations that are exhausting resources. A
 Reports the total number of open network connections (sockets) on the system, including all TCP/UDP sockets in all states.
 **Health meaning:**
 A steadily increasing or very high value may indicate a socket leak or that your system is approaching its socket/file descriptor limit, which can cause connectivity issues or failures.
+
 **Normal values:**
 For most Home Assistant installations, 20–200 is typical. Over 500 may indicate a problem unless you have many integrations or devices.
 
