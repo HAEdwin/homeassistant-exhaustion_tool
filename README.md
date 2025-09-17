@@ -1,13 +1,7 @@
-# homeassistant-exhaustion_tool
+# Exhaustion tool for Home Assistant
 An resource exhaustion tool to find integrations that are exhausting resources. After restarting HA wait 20 seconds before updates occur.
 
-# Exhaustion Meter Sensors Explained
-
-This document explains each sensor provided by the Exhaustion tool and how it relates to the health of your Home Assistant system.
-
----
-
-
+Sensors
 ## Open sockets
 **What it does:**
 - Reports the total number of open network connections (sockets) on the system, including all TCP/UDP sockets in all states.
