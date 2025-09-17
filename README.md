@@ -1,5 +1,7 @@
 # Exhaustion tool for Home Assistant
 A resource exhaustion tool to find integrations that are exhausting resources. After restarting HA wait 20 seconds before updates occur.
+<img width="467" height="584" alt="image" src="https://github.com/user-attachments/assets/45faf905-e0a4-444d-b369-c69189097add" />
+
 
 ## Open sockets
 **What it does:**
