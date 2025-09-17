@@ -1,9 +1,9 @@
 # homeassistant-exhaustion_tool
-An resource exhaustion tool to find integrations that are exhausting resources
+An resource exhaustion tool to find integrations that are exhausting resources. After restarting HA wait 20 seconds before updates occur.
 
 # Exhaustion Meter Sensors Explained
 
-This document explains each sensor provided by the Exhaustion Meter integration and how it relates to the health of your Home Assistant system.
+This document explains each sensor provided by the Exhaustion tool and how it relates to the health of your Home Assistant system.
 
 ---
 
