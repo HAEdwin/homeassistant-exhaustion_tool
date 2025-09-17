@@ -97,9 +97,9 @@ class EstablishedSocketSensor(SensorEntity):
     async def async_update(self):
         """Async update for ESTABLISHED socket sensor."""
         try:
-            self._attr_native_value = sum(
-                1 for c in psutil.net_connections() if c.status == "ESTABLISHED"
-            )
+            def count_established():
+                return sum(1 for c in psutil.net_connections() if c.status == "ESTABLISHED")
+            self._attr_native_value = await self.hass.async_add_executor_job(count_established)
         except Exception:
             self._attr_native_value = None
 
@@ -119,9 +119,9 @@ class CloseWaitSocketSensor(SensorEntity):
     async def async_update(self):
         """Async update for CLOSE_WAIT socket sensor."""
         try:
-            self._attr_native_value = sum(
-                1 for c in psutil.net_connections() if c.status == "CLOSE_WAIT"
-            )
+            def count_close_wait():
+                return sum(1 for c in psutil.net_connections() if c.status == "CLOSE_WAIT")
+            self._attr_native_value = await self.hass.async_add_executor_job(count_close_wait)
         except Exception:
             self._attr_native_value = None
 
@@ -141,9 +141,9 @@ class ListenSocketSensor(SensorEntity):
     async def async_update(self):
         """Async update for LISTEN socket sensor."""
         try:
-            self._attr_native_value = sum(
-                1 for c in psutil.net_connections() if c.status == "LISTEN"
-            )
+            def count_listen():
+                return sum(1 for c in psutil.net_connections() if c.status == "LISTEN")
+            self._attr_native_value = await self.hass.async_add_executor_job(count_listen)
         except Exception:
             self._attr_native_value = None
 
@@ -168,13 +168,11 @@ class FileDescriptorSensor(SensorEntity):
         """Async update for file descriptor sensor."""
         try:
             import os
-
-            self._attr_native_value = (
-                os.sysconf("SC_OPEN_MAX") if hasattr(os, "sysconf") else None
-            )
-            # For the current process only:
-            if hasattr(psutil.Process(), "num_fds"):
-                self._attr_native_value = psutil.Process().num_fds()
+            def get_num_fds():
+                if hasattr(psutil.Process(), "num_fds"):
+                    return psutil.Process().num_fds()
+                return None
+            self._attr_native_value = await self.hass.async_add_executor_job(get_num_fds)
         except Exception:
             self._attr_native_value = None
 
@@ -194,7 +192,9 @@ class ProcessCountSensor(SensorEntity):
     async def async_update(self):
         """Async update for process count sensor."""
         try:
-            self._attr_native_value = len(psutil.pids())
+            def get_pids_count():
+                return len(psutil.pids())
+            self._attr_native_value = await self.hass.async_add_executor_job(get_pids_count)
         except Exception:
             self._attr_native_value = None
 
@@ -214,11 +214,12 @@ class DiskIOSensor(SensorEntity):
     async def async_update(self):
         """Async update for disk I/O sensor."""
         try:
-            io = psutil.disk_io_counters()
-            if io:
-                self._attr_native_value = io.read_count + io.write_count
-            else:
-                self._attr_native_value = None
+            def get_disk_io():
+                io = psutil.disk_io_counters()
+                if io:
+                    return io.read_count + io.write_count
+                return None
+            self._attr_native_value = await self.hass.async_add_executor_job(get_disk_io)
         except Exception:
             self._attr_native_value = None
 
@@ -238,9 +239,9 @@ class TimeWaitSocketSensor(SensorEntity):
     async def async_update(self):
         """Async update for TIME_WAIT socket sensor."""
         try:
-            self._attr_native_value = sum(
-                1 for c in psutil.net_connections() if c.status == "TIME_WAIT"
-            )
+            def count_time_wait():
+                return sum(1 for c in psutil.net_connections() if c.status == "TIME_WAIT")
+            self._attr_native_value = await self.hass.async_add_executor_job(count_time_wait)
         except Exception:
             self._attr_native_value = None
 
@@ -260,6 +261,8 @@ class SocketExhaustionSensor(SensorEntity):
     async def async_update(self):
         """Async update for open sockets sensor."""
         try:
-            self._attr_native_value = len(psutil.net_connections())
+            def get_net_connections_count():
+                return len(psutil.net_connections())
+            self._attr_native_value = await self.hass.async_add_executor_job(get_net_connections_count)
         except Exception:
             self._attr_native_value = None
