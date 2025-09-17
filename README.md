@@ -14,6 +14,7 @@ For most Home Assistant installations, 20–200 is typical. Over 500 may indicat
 ## Sockets in TIME_WAIT
 **What it does:**
 Counts the number of sockets in the TIME_WAIT state (recently closed connections waiting to be fully released by the OS).
+
 **Health meaning:**
 A high value is normal for busy systems, but if it grows without dropping, it may indicate rapid connection churn or improper socket handling by integrations.
 
