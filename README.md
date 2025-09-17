@@ -115,5 +115,6 @@ The absolute value is less important than the rate of change. Rapid increases (t
 **General advice:**
 Watch for sudden spikes, steadily increasing values, or values that approach system limits.
 Use these sensors to set up Home Assistant automations or alerts for early warning of resource exhaustion.
+Disable and remove integrations that are exhausting resources.
 - For more details on system health, also use Home Assistant's built-in system monitor integration.
 
