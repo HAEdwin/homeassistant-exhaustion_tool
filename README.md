@@ -3,6 +3,8 @@ An exhaustion tool to find integrations that are exhausting resources.
 
 <img width="467" height="584" alt="image" src="https://github.com/user-attachments/assets/45faf905-e0a4-444d-b369-c69189097add" />
 
+## Installation
+in homeassistant/custom_components/ create a folder named "exhaustion_meter". Copy the files __init__.py, config_flow.py, manifest.json, sensor.py into that folder. Within the exhaustion_meter folder, create a folder named ".translations" and copy the file en.json in that folder. Next restart HA and navigate to the integration to add the entities to the dashboard.
 
 ## Open sockets
 **What it does:**
