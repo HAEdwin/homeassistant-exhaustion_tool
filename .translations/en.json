@@ -1,0 +1,10 @@
+{
+  "title": "Exhaustion Meter",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure Exhaustion Meter"
+      }
+    }
+  }
+}
